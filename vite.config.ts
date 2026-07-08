@@ -8,7 +8,7 @@ export default defineConfig({
       entry: 'src/main.ts',
       userscript: {
         name: '古文岛助手',
-        namespace: 'guwendao-helper',
+        namespace: 'guwendao-unlock',
         version: '0.1.0',
         description: '解锁古文岛(guwendao.net)的登录限制 & 无限朗读 & PDF免验证下载',
         author: 'wankong',
