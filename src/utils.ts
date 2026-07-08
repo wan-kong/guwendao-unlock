@@ -1,10 +1,4 @@
-/**
- * 工具函数
- */
-import { unsafeWindow } from '$';
-
 const TAG = '[古文岛助手]';
-export const pageWindow = unsafeWindow as Window & typeof globalThis;
 
 /** 带前缀的 console.log */
 export function log(...args: unknown[]): void {

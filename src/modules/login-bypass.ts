@@ -2,7 +2,7 @@
  * 登录绕过模块
  * 通过写入 cookie "gsw2017user" 跳过登录校验
  */
-import { log, pageWindow } from '../utils';
+import { log } from '../utils';
 
 const COOKIE_NAME = 'gsw2017user';
 const MOCK_USER_ID = '1000001';
@@ -53,37 +53,18 @@ function writeLoginCookie(): void {
   const cookie = `${COOKIE_NAME}=${encodeURIComponent(cookieValue)}; path=/; max-age=${ONE_YEAR_SECONDS}`;
   document.cookie = cookie;
 
-  if (window.location.hostname.endsWith('guwendao.net')) {
-    document.cookie = `${cookie}; domain=.guwendao.net`;
-  }
 }
 
-function installGetUserInfoBypass(): void {
-  pageWindow.getUserInfo = () => true;
-}
-
-function keepBypassAfterDeferredScripts(): void {
-  const reapply = () => {
-    writeLoginCookie();
-    installGetUserInfoBypass();
-  };
-
-  window.addEventListener('DOMContentLoaded', reapply);
-  window.addEventListener('load', reapply);
-  [0, 100, 500, 1500].forEach((delay) => window.setTimeout(reapply, delay));
-}
-
-export function bypassGetUserInfo(): void {
-  installGetUserInfoBypass();
+function replaceDefaultGetUserInfo(): void {
+  window.getUserInfo = () => true;
 }
 
 /**
  * 写入绕过登录所需的 cookie
  */
 export function bypassLogin(): void {
-  bypassGetUserInfo();
+  replaceDefaultGetUserInfo();
   // 设置一个长期有效的 cookie，路径覆盖全站
   writeLoginCookie();
-  keepBypassAfterDeferredScripts();
   log(`已处理 cookie: ${COOKIE_NAME}`);
 }

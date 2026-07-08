@@ -2,7 +2,7 @@
  * PDF 下载绕过模块
  * 移除下载按钮的权限校验，直接触发 PDF 导出
  */
-import { error, log, pageWindow, sanitizeFilename, waitForElement } from '../utils';
+import { error, log, sanitizeFilename, waitForElement } from '../utils';
 
 const PDF_PAGE_PATH = '/pdf/viewPdf.aspx';
 const PDF_DOWNLOAD_BUTTON_ID = 'xiazaiPdf';
@@ -31,7 +31,7 @@ function getPdfTitle(): string {
 }
 
 async function exportPdf(pdf: JsPdfDocument, pages: NodeListOf<Element>, title: string): Promise<void> {
-  const html2canvasFn = pageWindow.html2canvas;
+  const html2canvasFn = window.html2canvas;
   if (!html2canvasFn) {
     throw new Error('html2canvas 未加载，请刷新重试');
   }
@@ -144,7 +144,7 @@ function isPdfDownloadClick(e: MouseEvent): boolean {
 }
 
 function downloadPdf(): void {
-  const jsPDF = pageWindow.jspdf?.jsPDF;
+  const jsPDF = window.jspdf?.jsPDF;
   if (!jsPDF) {
     alert('PDF 插件未加载，请刷新重试');
     return;
@@ -196,7 +196,7 @@ export function bypassPdfDownload(): void {
   }
 
   // 1. 干掉 showlayuiPay 付费弹窗
-  pageWindow.showlayuiPay = (msg?: string) => {
+  window.showlayuiPay = (msg?: string) => {
     log(`已拦截付费弹窗: ${msg}`);
   };
 
