@@ -3,7 +3,7 @@
 //// <reference types="vite-plugin-monkey/global" />
 /// <reference types="vite-plugin-monkey/style" />
 
-interface GuwendaoTrack {
+interface Track {
   idStr: string;
   id: number;
   type: string;
@@ -40,18 +40,16 @@ interface JsPdfDocument {
   save(filename: string): void;
 }
 
-declare const currentTrackIndex: number | undefined;
 declare const currentTrack: number | undefined;
 declare const playlist: GuwendaoTrack[] | undefined;
 declare const track: GuwendaoTrack | undefined;
 
 interface Window {
-  /** 古闻道朗读付费校验，覆盖为 true 即可跳过 */
+  /** 古文岛朗读付费校验，覆盖为 true 即可跳过 */
   getPlayShowPay(showType?: string): boolean;
   getUserInfo(): boolean;
   /** PDF 下载付费弹窗，覆盖为空函数即可跳过 */
   showlayuiPay(msg?: string): void;
-  currentTrackIndex: number;
   currentTrack: number;
   updatePlaylist(): void;
   playTrack(track: GuwendaoTrack): void;
