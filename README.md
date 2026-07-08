@@ -2,7 +2,6 @@
 
 ![Greasy Fork Version](https://img.shields.io/greasyfork/v/586065) ![Greasy Fork Downloads](https://img.shields.io/greasyfork/dt/586065) ![Greasy Fork Rating](https://img.shields.io/greasyfork/rating-count/586065)
 
-
 [古文岛](https://www.guwendao.net) 油猴脚本。
 
 ## 功能
@@ -24,3 +23,16 @@ pnpm install
 pnpm dev      # 开发
 pnpm build    # 构建 → dist/guwendao-unlock.user.js
 ```
+
+## 免责声明
+
+本脚本仅供学习和研究使用，请遵循以下原则：
+
+- **尊重版权**：所有内容版权归[古文岛](https://www.guwendao.net)所有，请支持正版
+- **合理使用**：请勿将此脚本用于商业用途或大规模爬取
+- **个人责任**：使用本脚本所产生的任何法律后果由使用者自行承担
+- **支持创作**：如果喜欢古文岛的内容，请考虑[付费支持](https://www.guwendao.net)开发者
+
+## 最后一提
+
+你找的开发团队水平实在太差了，所有逻辑都在前端处理了，后端真就只做个存储和数据收集？
