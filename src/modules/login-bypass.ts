@@ -2,7 +2,7 @@
  * 登录绕过模块
  * 通过写入 cookie "gsw2017user" 跳过登录校验
  */
-import { log } from '../utils';
+import { defineLockedProperty, getTargetWindows, log } from '../utils';
 
 const COOKIE_NAME = 'gsw2017user';
 const MOCK_USER_ID = '1000001';
@@ -56,7 +56,7 @@ function writeLoginCookie(): void {
 }
 
 function replaceDefaultGetUserInfo(): void {
-  window.getUserInfo = () => true;
+  defineLockedProperty(getTargetWindows(), 'getUserInfo', () => true);
 }
 
 /**

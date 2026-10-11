@@ -1,10 +1,11 @@
 /**
- * 古文岛 (guwendao.net) 解锁油猴脚本
+ * 古文岛 (guwendao.net) & 古诗文网 (gushiwen.cn) 解锁油猴脚本
  *
  * 功能：
  * - 解除登录限制
- * - 无限朗读操作
+ * - 无限朗读操作（解除 15 秒试听时长与每日次数限制）
  * - PDF 下载免验证
+ * - 音频下载 MP3
  */
 import { log } from './utils';
 import { bypassLogin } from './modules/login-bypass';

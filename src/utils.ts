@@ -32,6 +32,44 @@ export function sanitizeFilename(filename: string): string {
 }
 
 /**
+ * 获取需要挂载的 window 上下文（同时支持标准 window 与油猴 unsafeWindow）
+ */
+export function getTargetWindows(): (Window & typeof globalThis)[] {
+  const targets: (Window & typeof globalThis)[] = [window];
+  if (typeof unsafeWindow !== 'undefined' && unsafeWindow && unsafeWindow !== window) {
+    targets.push(unsafeWindow);
+  }
+  return targets;
+}
+
+/**
+ * 在所有相关 window 上下文中定义不可被原网页轻易覆盖的属性/函数
+ */
+export function defineLockedProperty(
+  targets: (Window & typeof globalThis)[],
+  prop: string,
+  value: unknown,
+): void {
+  for (const target of targets) {
+    try {
+      Object.defineProperty(target, prop, {
+        value,
+        writable: false,
+        configurable: true,
+        enumerable: true,
+      });
+    } catch {
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (target as any)[prop] = value;
+      } catch {
+        // ignore
+      }
+    }
+  }
+}
+
+/**
  * 等待 DOM 中出现匹配选择器的元素
  * @param selector CSS 选择器
  * @param timeout 超时毫秒数，默认 10000

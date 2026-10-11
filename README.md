@@ -2,7 +2,7 @@
 
 ![Greasy Fork Version](https://img.shields.io/greasyfork/v/586065) ![Greasy Fork Downloads](https://img.shields.io/greasyfork/dt/586065) ![Greasy Fork Rating](https://img.shields.io/greasyfork/rating-count/586065)
 
-[古文岛](https://www.guwendao.net) 油猴脚本。
+[古文岛](https://www.guwendao.net) / [古诗文网](https://www.gushiwen.cn) 油猴脚本。
 
 ## 功能
 

@@ -17,13 +17,13 @@ let watermarkObserver: MutationObserver | undefined;
 let isPdfClickListenerMounted = false;
 
 function extractSourceTitle(text: string): string {
-  const title = text.replace(/PDF来自古文岛.*/g, '').trim();
+  const title = text.replace(/PDF来自(古文岛|古诗文网).*/g, '').trim();
   return title || text.trim();
 }
 
 function getPdfTitle(): string {
   const sourceTitle = document.querySelector('.sourceContent')?.textContent;
-  const title = sourceTitle?.replace(/《|》|PDF来自古文岛.*/g, '').trim()
+  const title = sourceTitle?.replace(/《|》|PDF来自(古文岛|古诗文网).*/g, '').trim()
     || document.title?.replace('PDF预览 - ', '')?.trim()
     || '古诗文';
 
